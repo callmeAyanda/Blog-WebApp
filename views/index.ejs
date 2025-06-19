@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Blog Post Web</title>
+    <link href="/index.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="titles">
+      <h1>Welcome to the thinking site</h1>
+      <h2>This is a safe space where you can share your thoughts.</h2>
+    </div>
+
+    <div class="textbox-container">
+      <form action="/submit" method="POST">
+        <input type="text" name="title" placeholder="Text Title" required />
+        <textarea
+          name="thoughts"
+          placeholder="Share your thoughts"
+          required
+        ></textarea>
+        <input type="submit" value="Post" />
+      </form>
+    </div>
+
+    <% posts.forEach(post => { %>
+    <div class="post">
+      <h3><%= post.title %></h3>
+      <p>
+        <%- post.thoughts.length > 50 ? post.thoughts.slice(0,
+        50).replace(/\r?\n/g, "<br />") + "..." :
+        post.thoughts.replace(/\r?\n/g, "<br />") %>
+      </p>
+      <div class="post-actions">
+        <a class="read-btn" href="/post/<%= post.id %>">Read More</a>
+        <a class="edit-btn" href="/edit/<%= post.id %>">Edit</a>
+        <form class="inline" action="/delete/<%= post.id %>" method="POST">
+          <button type="submit" class="delete-btn">Delete</button>
+        </form>
+      </div>
+    </div>
+    <% }) %>
+  </body>
+</html>

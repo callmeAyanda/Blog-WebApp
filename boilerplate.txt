@@ -1,0 +1,10 @@
+express-blog-starter/
+├── public/
+│   └── styles.css
+├── index.js
+├── routes/
+│   └── posts.js
+├── views/
+│   ├── index.ejs
+│   ├── read.ejs
+│   └── edit.ejs
